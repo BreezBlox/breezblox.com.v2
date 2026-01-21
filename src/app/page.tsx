@@ -28,7 +28,6 @@
 // === IMPORTS ===
 // React hooks for managing state and effects
 import { useState, useEffect } from 'react';
-import Image from 'next/image';
 
 // Icons from Lucide (https://lucide.dev/icons)
 // To add more icons, import them here and use as <IconName />
@@ -434,26 +433,23 @@ export default function LevelUpPage() {
       <section id="projects" className="grid md:grid-cols-2 min-h-[80vh] border-b border-white/10">
 
         {/* Left Side - Abstract Image/Graphic */}
-        <div className="bg-zinc-900 border-r border-white/10 relative overflow-hidden">
-
-          {/* Real Work Image (Generated/Placeholder) */}
+        <div className="bg-zinc-900 border-r border-white/10 relative overflow-hidden group">
+          {/* Main Image */}
           <div className="absolute inset-0">
-            <Image
-              src="/datacenter-construction.png"
-              alt="Data Center Construction"
-              fill
-              className="object-cover opacity-40 grayscale mix-blend-luminosity"
+            <img
+              src="/datacenter.gen.png"
+              alt="Level Up Field Report"
+              className="w-full h-full object-cover opacity-60 grayscale group-hover:grayscale-0 transition-all duration-700"
             />
-            {/* Dark gradient overlay so text remains readable */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
+            <div className="absolute inset-0 bg-black/40"></div>
           </div>
 
           {/* Field Report Badge */}
-          <div className="absolute bottom-8 left-8">
+          <div className="absolute bottom-8 left-8 z-10">
             <div className="bg-[--color-accent] text-white text-xs font-bold uppercase px-3 py-1 inline-block mb-2">
               Field Report
             </div>
-            <p className="font-mono text-xs text-zinc-400">
+            <p className="font-mono text-xs text-zinc-300 shadow-black drop-shadow-md">
               Zero-defect delivery maintained across 15 sites.
             </p>
           </div>
