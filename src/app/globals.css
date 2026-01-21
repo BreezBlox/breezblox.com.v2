@@ -1,0 +1,146 @@
+/* ============================================================
+   LEVEL UP - GLOBAL STYLES
+   ============================================================
+   
+   🎨 HOW TO CUSTOMIZE THIS FILE:
+   
+   This file controls the overall look of your website.
+   
+   - COLORS: Search for "Color Variables" below to change your brand colors
+   - FONTS: Search for "Font Variables" to change typography
+   - SPACING: Search for "Spacing" to adjust padding/margins
+   
+   The design uses a "brutalist" aesthetic with:
+   - Dark background (#050505 - almost black)
+   - Bright accent color (#ff3300 - orange-red)
+   - Clean sans-serif fonts
+   
+   ============================================================ */
+
+@import "tailwindcss";
+
+/* ============================================================
+   COLOR VARIABLES (DESIGN TOKENS)
+   ============================================================
+   
+   🎨 CHANGE YOUR BRAND COLORS HERE:
+   
+   --color-bg-primary: Main background color (the dark background)
+   --color-bg-secondary: Secondary background (slightly lighter)
+   --color-accent: Your main brand accent color (buttons, highlights)
+   --color-text-primary: Main text color
+   --color-text-muted: Subdued text (secondary info)
+   
+   To change colors, just update the hex values below!
+   Example: Change #ff3300 to #0066ff for blue accent
+   
+============================================================ */
+
+:root {
+  /* === BACKGROUND COLORS === */
+  --color-bg-primary: #050505;
+  /* Main page background - almost black */
+  --color-bg-secondary: #0a0a0a;
+  /* Cards, sections - slightly lighter */
+  --color-bg-card: #18181b;
+  /* Image cards, containers */
+
+  /* === ACCENT COLOR (Your Brand Color!) === */
+  --color-accent: #ff3300;
+  /* Orange-red - used for buttons, highlights */
+
+  /* === TEXT COLORS === */
+  --color-text-primary: #e0e0e0;
+  /* Main body text - light gray */
+  --color-text-muted: #71717a;
+  /* Secondary text - darker gray */
+  --color-text-dark: #3f3f46;
+  /* Very subtle text */
+  --color-white: #ffffff;
+  /* Pure white for headings */
+
+  /* === BORDER COLOR === */
+  --color-border: rgba(255, 255, 255, 0.1);
+  /* Subtle white border */
+
+  /* === FONTS === */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  /* === SPACING (you can adjust these for tighter/looser layouts) === */
+  --spacing-section: 5rem;
+  /* Space between major sections */
+  --spacing-container: 1.5rem;
+  /* Side padding on mobile */
+  --spacing-container-lg: 3rem;
+  /* Side padding on desktop */
+}
+
+/* ============================================================
+   BASE STYLES
+   ============================================================ */
+
+html {
+  scroll-behavior: smooth;
+  /* Smooth scrolling when clicking anchor links */
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--color-bg-primary);
+  color: var(--color-text-primary);
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+/* Custom text selection colors (when you highlight text) */
+::selection {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+/* ============================================================
+   MARQUEE ANIMATION
+   ============================================================
+   
+   This creates the scrolling text strip effect.
+   
+   🎯 TO ADJUST SPEED: Change the "20s" value below
+   - Lower number = faster (eg: 10s)
+   - Higher number = slower (eg: 30s)
+
+============================================================ */
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee 20s linear infinite;
+}
+
+/* ============================================================
+   UTILITY CLASSES
+   ============================================================ */
+
+/* Container for centering content with max-width */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding-left: var(--spacing-container);
+  padding-right: var(--spacing-container);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-left: var(--spacing-container-lg);
+    padding-right: var(--spacing-container-lg);
+  }
+}
