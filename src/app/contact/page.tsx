@@ -13,8 +13,7 @@
  * ============================================================
  */
 
-'use client';
-
+import { useState } from 'react';
 import { ArrowLeft, Send, MapPin, Phone, Mail } from 'lucide-react';
 import Link from 'next/link';
 
@@ -27,6 +26,39 @@ const TEAM = [
 ];
 
 export default function ContactPage() {
+    // --- FORM STATE ---
+    const [formData, setFormData] = useState({
+        name: '',
+        email: '',
+        subject: 'New Installation Project',
+        message: ''
+    });
+
+    // Handle input changes
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+        setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
+
+    // Handle submission - Opens Email Client
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+
+        const subject = `Level Up Inquiry: ${formData.subject}`;
+        const body = `
+NEW PROJECT INQUIRY
+--------------------------------
+ID: ${formData.name}
+CONTACT: ${formData.email}
+TARGET: ${formData.subject}
+
+BRIEFING:
+${formData.message}
+    `.trim();
+
+        // Open email client
+        window.location.href = `mailto:johncook@levelupinstalling.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    };
+
     return (
         <div className="min-h-screen bg-[--color-bg-primary] text-[--color-text-primary] font-sans selection:bg-[--color-accent] selection:text-white">
 
@@ -93,7 +125,7 @@ export default function ContactPage() {
 
                 {/* Right Col: The Form */}
                 <div className="md:col-span-7 md:col-start-6">
-                    <form className="bg-zinc-900/50 border border-white/10 p-8 md:p-12 backdrop-blur-md">
+                    <form onSubmit={handleSubmit} className="bg-zinc-900/50 border border-white/10 p-8 md:p-12 backdrop-blur-md">
                         <h3 className="font-mono text-xs text-[--color-accent] uppercase mb-8 tracking-widest">
               // Project Parameters
                         </h3>
@@ -103,6 +135,10 @@ export default function ContactPage() {
                                 <label className="text-xs font-bold uppercase text-zinc-500">Identity / Name</label>
                                 <input
                                     type="text"
+                                    name="name"
+                                    value={formData.name}
+                                    onChange={handleChange}
+                                    required
                                     className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:outline-none focus:border-[--color-accent] transition-colors"
                                     placeholder="ENTER NAME"
                                 />
@@ -111,6 +147,10 @@ export default function ContactPage() {
                                 <label className="text-xs font-bold uppercase text-zinc-500">Contact / Email</label>
                                 <input
                                     type="email"
+                                    name="email"
+                                    value={formData.email}
+                                    onChange={handleChange}
+                                    required
                                     className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:outline-none focus:border-[--color-accent] transition-colors"
                                     placeholder="ENTER EMAIL"
                                 />
@@ -119,11 +159,16 @@ export default function ContactPage() {
 
                         <div className="mb-8 space-y-2">
                             <label className="text-xs font-bold uppercase text-zinc-500">Target / Subject</label>
-                            <select className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:outline-none focus:border-[--color-accent] transition-colors appearance-none rounded-none cursor-pointer">
-                                <option className="bg-zinc-900">New Installation Project</option>
-                                <option className="bg-zinc-900">Retrofit / Upgrade</option>
-                                <option className="bg-zinc-900">Partnership Inquiry</option>
-                                <option className="bg-zinc-900">Other</option>
+                            <select
+                                name="subject"
+                                value={formData.subject}
+                                onChange={handleChange}
+                                className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:outline-none focus:border-[--color-accent] transition-colors appearance-none rounded-none cursor-pointer"
+                            >
+                                <option className="bg-zinc-900" value="New Installation Project">New Installation Project</option>
+                                <option className="bg-zinc-900" value="Retrofit / Upgrade">Retrofit / Upgrade</option>
+                                <option className="bg-zinc-900" value="Partnership Inquiry">Partnership Inquiry</option>
+                                <option className="bg-zinc-900" value="Other">Other</option>
                             </select>
                         </div>
 
@@ -131,6 +176,10 @@ export default function ContactPage() {
                             <label className="text-xs font-bold uppercase text-zinc-500">Briefing / Message</label>
                             <textarea
                                 rows={6}
+                                name="message"
+                                value={formData.message}
+                                onChange={handleChange}
+                                required
                                 className="w-full bg-transparent border-b border-white/20 py-4 text-white focus:outline-none focus:border-[--color-accent] transition-colors resize-none"
                                 placeholder="ENTER PROJECT DETAILS..."
                             ></textarea>
@@ -150,3 +199,4 @@ export default function ContactPage() {
         </div>
     );
 }
+```
