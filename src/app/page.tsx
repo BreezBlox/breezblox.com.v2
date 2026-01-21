@@ -46,11 +46,11 @@ import {
 
 const COMPANY = {
   name: "Level Up",
-  tagline: "Installation Corp.",
+  tagline: "Structure & Data",
   yearEstablished: "2014",
   location: "SLC, UT",
   phone: "385-335-5542",
-  email: "info@levelupinstall.com",
+  email: "johncook@levelupinstalling.com",
 };
 
 
@@ -80,7 +80,7 @@ const SERVICES = [
   {
     id: "01",
     title: "Containment Systems",
-    desc: "Thermal isolation architecture. We build the envelope that separates hot and cold airstreams with hermetic precision.",
+    desc: "Thermal isolation architecture. Full-scale hot and cold aisle solutions. From field measurements to hermetic sealing.",
     specs: [
       "HAC/CAC Configurations",
       "Structural Ceiling Grids",
@@ -90,7 +90,7 @@ const SERVICES = [
   {
     id: "02",
     title: "Critical Conveyance",
-    desc: "The central nervous system of the facility. Heavy-duty overhead and underfloor pathways deployed at scale.",
+    desc: "The nervous system of the facility. Seismic-rated overhead and underfloor pathways deployed at scale.",
     specs: [
       "Fiber Raceway Integration",
       "Basket Tray Systems",
@@ -100,7 +100,7 @@ const SERVICES = [
   {
     id: "03",
     title: "Structural Decking",
-    desc: "Heavy infrastructure support. Creating access and stability in the most complex mechanical environments.",
+    desc: "Heavy infrastructure support. Industrial steel and FRP decking creating access in complex mechanical environments.",
     specs: [
       "Generator Gantries",
       "Maintenance Walkways",
@@ -110,7 +110,7 @@ const SERVICES = [
   {
     id: "04",
     title: "Raised Access Floor",
-    desc: "The literal foundation of the white space. Laser-leveled grid systems built to support massive static loads.",
+    desc: "The literal foundation. Laser-leveled grid systems built to support massive static loads. Live-environment retrofits.",
     specs: [
       "Pedestal Stabilization",
       "Airflow Panel Logic",
@@ -125,9 +125,10 @@ const SERVICES = [
    ============================================================ */
 
 const MARQUEE_ITEMS = [
-  "Safety First Protocol",
-  "48hr Mobilization",
-  "Precision Deployment"
+  "60+ Technicians",
+  "Nationwide Deployment",
+  "OSHA 30 Certified",
+  "Precision Installation"
 ];
 
 
@@ -139,7 +140,7 @@ const FEATURES = [
   {
     number: "01",
     title: "Rapid Mobilization",
-    desc: "Crews ready to deploy nationwide within 48 hours. We keep the schedule moving."
+    desc: "60+ technicians ready to deploy nationwide. We keep the schedule moving."
   },
   {
     number: "02",
@@ -391,8 +392,8 @@ export default function LevelUpPage() {
                 {/* Service Content (expandable on mobile) */}
                 <div className="md:col-span-4 md:col-start-9 flex justify-between items-start">
                   <div className={`overflow-hidden transition-all duration-500 ease-in-out ${activeAccordion === idx
-                      ? 'max-h-96 opacity-100'
-                      : 'max-h-0 opacity-0 md:max-h-96 md:opacity-100'
+                    ? 'max-h-96 opacity-100'
+                    : 'max-h-0 opacity-0 md:max-h-96 md:opacity-100'
                     }`}>
                     <p className="text-zinc-400 text-lg leading-relaxed mb-6">
                       {service.desc}
