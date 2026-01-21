@@ -31,13 +31,28 @@ import { useState, useEffect } from 'react';
 
 // Icons from Lucide (https://lucide.dev/icons)
 // To add more icons, import them here and use as <IconName />
-import {
-  ArrowUpRight,  // Arrow pointing up-right (used for buttons)
-  Menu,          // Hamburger menu icon (mobile)
-  X,             // X/close icon
-  Plus,          // Plus sign (accordion expand)
-  Minus          // Minus sign (accordion collapse)
-} from 'lucide-react';
+import WireframeAisle from './components/WireframeAisle';
+
+// ... (in the component)
+
+{/* Left Side - Abstract Image/Graphic */ }
+<div className="bg-zinc-900 border-r border-white/10 relative overflow-hidden group">
+
+  {/* 3D Wireframe Component */}
+  <div className="absolute inset-0 opacity-60 group-hover:opacity-100 transition-opacity duration-700">
+    <WireframeAisle />
+  </div>
+
+  {/* Field Report Badge */}
+  <div className="absolute bottom-8 left-8 z-10">
+    <div className="bg-[--color-accent] text-white text-xs font-bold uppercase px-3 py-1 inline-block mb-2">
+      Field Report
+    </div>
+    <p className="font-mono text-xs text-zinc-400">
+      Zero-defect delivery maintained across 15 sites.
+    </p>
+  </div>
+</div>
 
 
 /* ============================================================
