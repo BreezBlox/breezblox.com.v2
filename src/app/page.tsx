@@ -497,11 +497,13 @@ export default function LevelUpPage() {
 
           {/* Big "Let's Talk" CTA */}
           <div className="flex flex-col md:flex-row justify-between items-end border-b border-white/10 pb-4 mb-4">
-            <h2 className="text-[15vw] md:text-[10vw] font-bold uppercase leading-none tracking-tighter text-zinc-800 hover:text-white transition-colors cursor-pointer select-none">
-              Let&apos;s Talk
-            </h2>
+            <a href="/contact" className="group">
+              <h2 className="text-[15vw] md:text-[10vw] font-bold uppercase leading-none tracking-tighter text-zinc-800 group-hover:text-white transition-colors cursor-pointer select-none">
+                Let&apos;s Talk
+              </h2>
+            </a>
             <a
-              href={`mailto:${COMPANY.email}`}
+              href="/contact"
               className="hidden md:flex bg-[--color-accent] w-32 h-32 rounded-full items-center justify-center hover:scale-110 transition-transform mb-8"
             >
               <ArrowUpRight size={48} className="text-white" />
