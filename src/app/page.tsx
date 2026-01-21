@@ -28,31 +28,17 @@
 // === IMPORTS ===
 // React hooks for managing state and effects
 import { useState, useEffect } from 'react';
+import Image from 'next/image';
 
 // Icons from Lucide (https://lucide.dev/icons)
 // To add more icons, import them here and use as <IconName />
-import WireframeAisle from './components/WireframeAisle';
-
-// ... (in the component)
-
-{/* Left Side - Abstract Image/Graphic */ }
-<div className="bg-zinc-900 border-r border-white/10 relative overflow-hidden group">
-
-  {/* 3D Wireframe Component */}
-  <div className="absolute inset-0 opacity-60 group-hover:opacity-100 transition-opacity duration-700">
-    <WireframeAisle />
-  </div>
-
-  {/* Field Report Badge */}
-  <div className="absolute bottom-8 left-8 z-10">
-    <div className="bg-[--color-accent] text-white text-xs font-bold uppercase px-3 py-1 inline-block mb-2">
-      Field Report
-    </div>
-    <p className="font-mono text-xs text-zinc-400">
-      Zero-defect delivery maintained across 15 sites.
-    </p>
-  </div>
-</div>
+import {
+  ArrowUpRight,  // Arrow pointing up-right (used for buttons)
+  Menu,          // Hamburger menu icon (mobile)
+  X,             // X/close icon
+  Plus,          // Plus sign (accordion expand)
+  Minus          // Minus sign (accordion collapse)
+} from 'lucide-react';
 
 
 /* ============================================================
@@ -450,13 +436,16 @@ export default function LevelUpPage() {
         {/* Left Side - Abstract Image/Graphic */}
         <div className="bg-zinc-900 border-r border-white/10 relative overflow-hidden">
 
-          {/* Abstract grid design (placeholder for real image) */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[80%] h-[80%] border border-zinc-700 relative">
-              <div className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-full bg-zinc-800"></div>
-              <div className="absolute top-1/2 left-0 -translate-y-1/2 w-full h-px bg-zinc-800"></div>
-              <div className="absolute inset-0 bg-gradient-to-tr from-black/80 via-transparent to-transparent"></div>
-            </div>
+          {/* Real Work Image (Generated/Placeholder) */}
+          <div className="absolute inset-0">
+            <Image
+              src="/datacenter-construction.png"
+              alt="Data Center Construction"
+              fill
+              className="object-cover opacity-40 grayscale mix-blend-luminosity"
+            />
+            {/* Dark gradient overlay so text remains readable */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent z-10"></div>
           </div>
 
           {/* Field Report Badge */}
