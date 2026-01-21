@@ -3,86 +3,77 @@
 import React from 'react';
 
 export default function WireframeAisle() {
+    // Styles for the base cube/corridor
+    const containerStyle: React.CSSProperties = {
+        perspective: '1000px',
+    };
+    const sceneStyle: React.CSSProperties = {
+        position: 'relative',
+        width: '240px',
+        height: '240px',
+        transformStyle: 'preserve-3d',
+        animation: 'floatRotate 15s infinite linear',
+    };
+
+    // Face Geometry: 240px box -> translate 120px from center
+    const faceBase = "absolute inset-0 border-2 border-[--color-accent] bg-[--color-accent]/10 backdrop-blur-sm";
+
     return (
-        <div className="w-full h-full relative overflow-hidden bg-black flex items-center justify-center perspective-[1000px]">
+        <div className="w-full h-full relative overflow-hidden bg-zinc-950 flex items-center justify-center" style={containerStyle}>
+            {/* Animation Keyframes */}
+            <style jsx global>{`
+        @keyframes floatRotate {
+          0% { transform: rotateX(-10deg) rotateY(0deg); }
+          50% { transform: rotateX(10deg) rotateY(180deg); }
+          100% { transform: rotateX(-10deg) rotateY(360deg); }
+        }
+      `}</style>
 
-            {/* 
-        This is a pure CSS 3D scene representing a containment aisle.
-        It consists of a 'corridor' that slowly floats.
-      */}
+            <div style={sceneStyle}>
 
-            <div className="relative w-64 h-64 transform-style-3d animate-float-rotate">
-
-                {/* === LEFT RACKS === */}
-                <div className="absolute inset-0 border border-[--color-accent] bg-[--color-accent]/5 -translate-x-32 translate-z-0 rotate-y-90">
-                    {/* Grid lines to look like racking */}
-                    <div className="w-full h-full grid grid-rows-6 gap-0">
+                {/* LEFT WALL */}
+                <div className={faceBase} style={{ transform: 'rotateY(-90deg) translateZ(120px)' }}>
+                    <div className="w-full h-full grid grid-rows-6">
                         {[...Array(6)].map((_, i) => (
-                            <div key={i} className="border-b border-[--color-accent]/30 w-full h-full"></div>
+                            <div key={i} className="border-b border-[--color-accent]/40"></div>
                         ))}
                     </div>
                 </div>
 
-                {/* === RIGHT RACKS === */}
-                <div className="absolute inset-0 border border-[--color-accent] bg-[--color-accent]/5 translate-x-32 translate-z-0 rotate-y-90">
-                    <div className="w-full h-full grid grid-rows-6 gap-0">
+                {/* RIGHT WALL */}
+                <div className={faceBase} style={{ transform: 'rotateY(90deg) translateZ(120px)' }}>
+                    <div className="w-full h-full grid grid-rows-6">
                         {[...Array(6)].map((_, i) => (
-                            <div key={i} className="border-b border-[--color-accent]/30 w-full h-full"></div>
+                            <div key={i} className="border-b border-[--color-accent]/40"></div>
                         ))}
                     </div>
                 </div>
 
-                {/* === CEILING CONTAINMENT === */}
-                <div className="absolute inset-0 border border-[--color-accent] bg-[--color-accent]/10 -translate-y-32 rotate-x-90">
-                    {/* Cross bracing look */}
+                {/* CEILING */}
+                <div className={faceBase} style={{ transform: 'rotateX(90deg) translateZ(120px)', background: 'transparent' }}>
                     <div className="w-full h-full flex justify-around">
                         {[...Array(4)].map((_, i) => (
-                            <div key={i} className="h-full w-px bg-[--color-accent]/30"></div>
+                            <div key={i} className="w-px h-full bg-[--color-accent]/40"></div>
                         ))}
                     </div>
                 </div>
 
-                {/* === FLOOR GRID === */}
-                <div className="absolute inset-0 border border-[--color-accent] bg-[--color-accent]/5 translate-y-32 rotate-x-90">
+                {/* FLOOR */}
+                <div className={faceBase} style={{ transform: 'rotateX(-90deg) translateZ(120px)' }}>
                     <div className="w-full h-full grid grid-cols-4 grid-rows-4">
-                        {/* Floor tiles */}
+                        {[...Array(16)].map((_, i) => (
+                            <div key={i} className="border border-[--color-accent]/20"></div>
+                        ))}
                     </div>
                 </div>
 
-                {/* === FAR END (DOORS) === */}
-                <div className="absolute inset-0 border border-[--color-accent] bg-[--color-accent]/20 -translate-z-32">
-                    <div className="w-full h-full border-r border-[--color-accent]/50 w-1/2 absolute left-0"></div>
-                    <div className="w-full h-full border-l border-[--color-accent]/50 w-1/2 absolute right-0"></div>
-                    {/* Door handles */}
-                    <div className="absolute top-1/2 left-[45%] h-8 w-1 bg-[--color-accent]"></div>
-                    <div className="absolute top-1/2 right-[45%] h-8 w-1 bg-[--color-accent]"></div>
+                {/* BACK WALL (Far end) */}
+                <div className={faceBase} style={{ transform: 'rotateY(180deg) translateZ(120px)', opacity: 0.5 }}>
+                    <div className="absolute top-0 bottom-0 left-1/2 w-px bg-[--color-accent]/60"></div>
+                    <div className="absolute top-1/2 left-0 right-0 h-px bg-[--color-accent]/60"></div>
                 </div>
 
             </div>
-
-            <style jsx>{`
-        .perspective-\\[1000px\\] {
-          perspective: 800px;
-        }
-        .transform-style-3d {
-          transform-style: preserve-3d;
-        }
-        /* Positions for the cube faces */
-        .rotate-y-90 { transform: rotateY(90deg) translateZ(128px); } /* Right Wall */
-        .-rotate-y-90 { transform: rotateY(-90deg) translateZ(128px); } /* Left Wall - wait, using translate-x approach above */
-        
-        /* Let's use strict transforms matching the logic above */
-        
-        /* Animation */
-        @keyframes float-rotate {
-          0% { transform: rotateX(-5deg) rotateY(-20deg); }
-          50% { transform: rotateX(5deg) rotateY(20deg); }
-          100% { transform: rotateX(-5deg) rotateY(-20deg); }
-        }
-        .animate-float-rotate {
-          animation: float-rotate 12s ease-in-out infinite;
-        }
-      `}</style>
         </div>
     );
 }
