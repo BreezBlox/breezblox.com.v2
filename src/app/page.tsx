@@ -323,7 +323,7 @@ export default function LevelUpPage() {
             {/* Call-to-Action Button */}
             <div className="md:col-span-3 flex justify-end items-start">
               <a
-                href="#contact"
+                href="/contact"
                 className="bg-[--color-accent] hover:bg-white hover:text-black transition-colors text-white text-sm font-bold uppercase px-8 py-4 tracking-wider flex items-center gap-2"
               >
                 Start Project <ArrowUpRight size={18} />
