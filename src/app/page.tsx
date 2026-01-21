@@ -45,7 +45,7 @@ import {
    ============================================================ */
 
 const COMPANY = {
-  name: "Level Up",
+  name: "Level Up Installation",
   tagline: "Structure & Data",
   yearEstablished: "2014",
   location: "SLC, UT",
